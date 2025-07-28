@@ -1,12 +1,8 @@
-# React + Vite
+ 🚀 Just Built My Responsive GitHub Profile Page Using React + TailwindCSS + GitHub API! 🧑‍💻💻
+Hi folks! I recently created a fully responsive GitHub profile page using:
+ • ⚛️ React
+ • 🎨 Tailwind CSS
+ • 🔗 GitHub REST API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+It fetches real-time GitHub data like followers, repositories, bio, and shows them in a clean UI.
+This helped me improve my API integration, React state management, and frontend layout skills.
