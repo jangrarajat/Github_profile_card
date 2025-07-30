@@ -39,13 +39,13 @@ function App() {
         data.map((repo) => (
 
           <tr key={repo.id} className='border-b-2 px-3 border-gray-800 bg-gray-900'>
-            <td className='text-start p-2  '>
+            <td className='text-start p-2 border border-gray-800'>
               < a href={repo.html_url}
                 className='text-blue-400  hover:underline '
               > {repo.full_name}
               </a >
             </td>
-            <td className='text-start  hidden md:flex'>
+            <td className='text-start  hidden md:flex pl-2'>
               {repo.description}
             </td>
           </tr>
@@ -111,7 +111,7 @@ function App() {
           <table className='border-collapse border border-gray-800  w-[95%] mx-auto   bg-gray-800 rounded-[8px]  text-gray-300'>
             <thead >
               <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
-                <th className='p-2'>Repository</th>
+                <th className='p-2 border border-gray-800'>Repository</th>
                 <th className='text-start  p-2 hidden md:flex'>discraption</th>
               </tr>
             </thead>
