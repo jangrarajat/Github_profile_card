@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FaGithub } from "react-icons/fa";
 import './App.css'
-import { tr } from 'framer-motion/client';
+
 
 function App() {
   const [profilePic, setProfilePic] = useState()
@@ -11,7 +11,7 @@ function App() {
   const [following, setFollowing] = useState(0)
   const [repoLenth, setRepoLenth] = useState(0)
   const [repos, setRepos] = useState([])
-
+  const [laoding, setLaoding] = useState(true)
 
 
   async function getGithubData() {
@@ -25,6 +25,8 @@ function App() {
       setBio(() => data.bio)
     } catch (error) {
       throw error;
+    } finally {
+      setLaoding(false)
     }
   }
 
@@ -74,8 +76,14 @@ function App() {
   return (
     <>
 
+      {laoding ? (<div className='fixed w-full h-full  top-0 left-0 bg-gray-800 ' >
+        <div className='h-20 w-20 border-7 border-b-white border-gray-500 animate-spin rounded-full m-auto mt-[300px]'></div>
+      </div>) : (<div className='fixed w-full h-full hidden top-0 left-0 bg-gray-800 ' >
+        <div className='h-20 w-20 border-7  border-b-white border-gray-500 animate-spin rounded-full m-auto mt-[300px]'></div>
+      </div>)}
 
-      <div className='bg-gray-900 p-3 px-5 pb-6 rounded-t-xl md:flex md:items-center'>
+
+      <div className='bg-gray-900 p-3 px-5 pb-6  md:flex md:items-center'>
         <div className='text-white mt-[40px] justify-center items-center'>
           <img src={profilePic} alt="profilePic" className='w-full rounded-2xl' />
         </div>
@@ -83,9 +91,9 @@ function App() {
           <h1 className='font-bold text-5xl text-start mb-3 pl-2'>{name}</h1>
           <p className='text-start pl-3 flex items-center'><a href="https://github.com/jangrarajat" className='underline text-blue-400 flex items-center'> <FaGithub />  jangrarajat</a></p>
           <p className='text-start mb-3  '>
-           <span className='ml-3  md:text-2xl '>{followers} </span> <span className='text-gray-400 text-sm'>Followers</span>
-           <span className='ml-3  md:text-2xl '>{following}</span> <span  className='text-gray-400 text-sm'>Following</span>
-           <span className='ml-3  md:text-2xl '>{repoLenth}</span> <span  className='text-gray-400 text-sm'>Repository</span>
+            <span className='ml-3  md:text-2xl '>{followers} </span> <span className='text-gray-400 text-sm'>Followers</span>
+            <span className='ml-3  md:text-2xl '>{following}</span> <span className='text-gray-400 text-sm'>Following</span>
+            <span className='ml-3  md:text-2xl '>{repoLenth}</span> <span className='text-gray-400 text-sm'>Repository</span>
           </p>
           <p className='text-start pl-3 '>{bio}</p>
 
@@ -98,10 +106,10 @@ function App() {
 
 
 
-      <div className='w-full bg-gray-900 pb-5 rounded-b-xl'>
+      <div className='w-full bg-gray-900 pb-5 '>
         <div className='h-[2px] rounded-2 bg-amber-50 mx-20'></div>
         <br />
-        <h1 className='text-white text-4xl mb-2'
+        <h1 className='text-white text-4xl mb-2 text-center'
         >All Repository
           <br className='md:hidden' />
 
