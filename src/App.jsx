@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FaGithub } from "react-icons/fa";
+import { GrClose } from "react-icons/gr";
+
 import './App.css'
 
 
@@ -12,7 +14,10 @@ function App() {
   const [repoLenth, setRepoLenth] = useState(0)
   const [repos, setRepos] = useState([])
   const [laoding, setLaoding] = useState(true)
-
+  const [followBox, setFollowerBox] = useState(false)
+  const [followingBox, setFollowingBox] = useState(false)
+  const [followerData, setFollowerData] = useState([])
+  const [followingData, setFollowingData] = useState([])
 
   async function getGithubData() {
     try {
@@ -27,6 +32,50 @@ function App() {
       throw error;
     } finally {
       setLaoding(false)
+    }
+  }
+
+
+
+  async function getFollowData() {
+    try {
+      const res = await fetch("https://api.github.com/users/jangrarajat/followers")
+      const data = await res.json();
+      setFollowerData(
+        data.map((follow) => (
+          <td className='text-start p-2 border border-gray-800 ' key={follow.id}>
+            <div className='flex gap-2 items-center'>
+              <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
+              <p className='text-sm'>{follow.login}</p>
+            </div>
+          </td>
+        ))
+      )
+    
+    } catch (error) {
+      console.log("follower geting data error", error)
+      throw error
+    }
+  }
+
+  async function getFollowingData() {
+    try {
+      const res = await fetch("https://api.github.com/users/jangrarajat/following")
+      const data = await res.json();
+      setFollowingData(
+        data.map((follow) => (
+          <td className='text-start p-2 border border-gray-800 ' key={follow.id}>
+            <div className='flex gap-2 items-center'>
+              <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
+              <p className='text-sm'>{follow.login}</p>
+            </div>
+          </td>
+        ))
+      )
+     
+    } catch (error) {
+      console.log("follower geting data error", error)
+      throw error
     }
   }
 
@@ -68,6 +117,8 @@ function App() {
   useEffect(() => {
     getGitRepo()
     getGithubData()
+    getFollowData()
+    getFollowingData()
   }, [])
 
 
@@ -75,7 +126,7 @@ function App() {
 
   return (
     <>
-
+      {/* profile card section  */}
       {laoding ? (<div className='fixed w-full h-full  top-0 left-0 bg-gray-800 ' >
         <div className='h-20 w-20 border-7 border-b-white border-gray-500 animate-spin rounded-full m-auto mt-[300px]'></div>
       </div>) : (<div className='fixed w-full h-full hidden top-0 left-0 bg-gray-800 ' >
@@ -91,9 +142,9 @@ function App() {
           <h1 className='font-bold text-5xl text-start mb-3 pl-2'>{name}</h1>
           <p className='text-start pl-3 flex items-center'><a href="https://github.com/jangrarajat" className='underline text-blue-400 flex items-center'> <FaGithub />  jangrarajat</a></p>
           <p className='text-start mb-3  '>
-            <span className='ml-3  md:text-2xl '>{followers} </span> <span className='text-gray-400 text-sm'>Followers</span>
-            <span className='ml-3  md:text-2xl '>{following}</span> <span className='text-gray-400 text-sm'>Following</span>
-            <span className='ml-3  md:text-2xl '>{repoLenth}</span> <span className='text-gray-400 text-sm'>Repository</span>
+            <span className='ml-3  md:text-2xl '>{followers} </span> <span className='text-gray-400 text-sm cursor-pointer' onClick={() => setFollowerBox(followBox ? false : true)}>Followers</span>
+            <span className='ml-3  md:text-2xl '>{following}</span> <span className='text-gray-400 text-sm  cursor-pointer' onClick={() => setFollowingBox(followingBox? false : true)}>Following</span>
+            <span className='ml-3  md:text-2xl '>{repoLenth}</span> <span className='text-gray-400 text-sm ' >Repository</span>
           </p>
           <p className='text-start pl-3 '>{bio}</p>
 
@@ -106,8 +157,53 @@ function App() {
 
 
 
+      {/* followerBox Section  */}
+
+
+
+      {followBox ? (<>
+        <div className='bg-gray-900  '>
+          <table className='border-collapse border border-gray-800  w-[95%] mx-auto   bg-gray-800 rounded-[8px]  text-gray-300'>
+            <thead >
+              <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
+                <th className='p-2 border border-gray-800'>followers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className='border-b-2 px-3 border-gray-800 bg-gray-900 flex flex-col'>
+                {followerData}
+              </tr>
+            </tbody>
+          </table>
+
+     
+        </div>
+      </>) : (<></>)}
+
+       {followingBox  ? (<>
+        <div className='bg-gray-900  '>
+       
+          <table className='border-collapse border border-gray-800  w-[95%] mx-auto   bg-gray-800 rounded-[8px]  text-gray-300'>
+            <thead >
+              <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
+                <th className='p-2 border border-gray-800'>following</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className='border-b-2 px-3 border-gray-800 bg-gray-900 flex flex-col '>
+                {followingData}
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </>) : (<></>)}
+
+      {/* Repository table section  */}
+
       <div className='w-full bg-gray-900 pb-5 '>
-        <div className='h-[2px] rounded-2 bg-amber-50 mx-20'></div>
+
         <br />
         <h1 className='text-white text-4xl mb-2 text-center'
         >All Repository
@@ -130,6 +226,7 @@ function App() {
         </div>
 
       </div>
+
     </>
   )
 }
