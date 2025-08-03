@@ -137,8 +137,8 @@ function App() {
 
 
       <div className='bg-gray-900 p-3 px-5 pb-6  md:flex md:items-center'>
-        <div className='text-white mt-[40px] justify-center items-center'>
-          <img src={profilePic} alt="profilePic" className='w-full rounded-2xl' />
+        <div className='text-white mt-[40px]  justify-center items-center   '>
+          <img src={profilePic} alt="profilePic" className='w-40 md:w-[70%] ml-4 md:ml-20 md:rounded-sm rounded-full' />
         </div>
         <div className='text-white '>
           <h1 className='font-bold text-5xl text-start mb-3 pl-2'>{name}</h1>
@@ -165,12 +165,12 @@ function App() {
         <>
           <div className='bg-gray-900 flex flex-col justify-center md:flex-row'>
             {followBox ? (<>
-              <div className='bg-gray-900 w-full md:w-[40%] '>
+              <div className='bg-gray-900 w-full md:w-[80%] '>
                 <table className='mb-4 w-[90%] mx-auto rounded-[8px]  text-gray-300'>
                   <thead>
                     <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
                       <th className='p-2 '>followers </th>
-                     <th><button  onClick={()=> setFollowerBox(false)}><GrClose/></button></th>
+                      <th><button onClick={() => setFollowerBox(false)}><GrClose /></button></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -185,19 +185,19 @@ function App() {
             </>) : (<></>)}
 
             {followingBox ? (<>
-              <div className='bg-gray-900 w-full md:w-[40%] '>
+              <div className='bg-gray-900 w-full md:w-[80%] '>
 
                 <table className='mb-4 w-[90%] mx-auto rounded-[8px]  text-gray-300'>
                   <thead >
                     <tr className='   w-[300px] bg-gray-950 text-white  '>
                       <th className='p-2 '>following</th>
-                    <th><button  onClick={()=> setFollowingBox(false)}><GrClose/></button></th>
+                      <th><button onClick={() => setFollowingBox(false)}><GrClose /></button></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className='px-3  bg-gray-900 flex flex-col '>
                       {followingData}
-                       
+
                     </tr>
 
                   </tbody>
