@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaGithub } from "react-icons/fa";
-
+import { GrClose } from "react-icons/gr";
 import './App.css'
 
 
@@ -47,7 +47,7 @@ function App() {
               <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
               <p className='text-sm'>{follow.login}</p>
             </div>
-            <div className='h-[1px] bg-gray-800 w-[96%] mt-2 '></div>
+            <div className='h-[1px] bg-gray-800 w-[99%] mt-2 '></div>
           </td>
         ))
       )
@@ -169,7 +169,8 @@ function App() {
                 <table className='mb-4 w-[90%] mx-auto rounded-[8px]  text-gray-300'>
                   <thead>
                     <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
-                      <th className='p-2 border border-gray-800'>followers</th>
+                      <th className='p-2 '>followers </th>
+                     <th><button  onClick={()=> setFollowerBox(false)}><GrClose/></button></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -186,16 +187,17 @@ function App() {
             {followingBox ? (<>
               <div className='bg-gray-900 w-full md:w-[40%] '>
 
-                <table className='  w-[90%] mx-auto  bg-gray-800 rounded-[8px]  text-gray-300'>
+                <table className='mb-4 w-[90%] mx-auto rounded-[8px]  text-gray-300'>
                   <thead >
                     <tr className='   w-[300px] bg-gray-950 text-white  '>
                       <th className='p-2 '>following</th>
+                    <th><button  onClick={()=> setFollowingBox(false)}><GrClose/></button></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className='b px-3  bg-gray-900 flex flex-col '>
+                    <tr className='px-3  bg-gray-900 flex flex-col '>
                       {followingData}
-
+                       
                     </tr>
 
                   </tbody>
