@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 import { FaGithub } from "react-icons/fa";
-import { GrClose } from "react-icons/gr";
-
+ 
 import './App.css'
-import { div } from 'framer-motion/client';
-
+ 
 
 function App() {
   const [profilePic, setProfilePic] = useState()
