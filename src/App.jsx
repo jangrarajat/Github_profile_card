@@ -45,7 +45,7 @@ function App() {
           <td className='text-start p-2 ' key={follow.id}>
             <div className='flex gap-2 items-center'>
               <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
-              <p className='text-sm'>{follow.login}</p>
+             <p className='text-sm'><a href={follow.html_url}>{follow.login}</a></p>
             </div>
             <div className='h-[1px] bg-gray-800 w-[99%] mt-2 '></div>
           </td>
@@ -67,7 +67,7 @@ function App() {
           <td className='text-start p-2  ' key={follow.id}>
             <div className='flex gap-2 items-center'>
               <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
-              <p className='text-sm'>{follow.login}</p>
+              <p className='text-sm'><a href={follow.html_url}>{follow.login}</a></p>
             </div>
             <div className='h-[1px] bg-gray-800 w-[96%] mt-2 '></div>
           </td>
