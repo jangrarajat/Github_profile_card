@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { FaGithub } from "react-icons/fa";
- 
+
 import './App.css'
- 
+
 
 function App() {
   const [profilePic, setProfilePic] = useState()
@@ -69,7 +69,7 @@ function App() {
               <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
               <p className='text-sm'>{follow.login}</p>
             </div>
-             <div className='h-[1px] bg-gray-800 w-[96%] mt-2 '></div>
+            <div className='h-[1px] bg-gray-800 w-[96%] mt-2 '></div>
           </td>
         ))
       )
@@ -166,7 +166,7 @@ function App() {
           <div className='bg-gray-900 flex flex-col justify-center md:flex-row'>
             {followBox ? (<>
               <div className='bg-gray-900 w-full md:w-[40%] '>
-                <table className='mb-4 w-[96%] mx-auto rounded-[8px]  text-gray-300'>
+                <table className='mb-4 w-[90%] mx-auto rounded-[8px]  text-gray-300'>
                   <thead>
                     <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
                       <th className='p-2 border border-gray-800'>followers</th>
@@ -186,7 +186,7 @@ function App() {
             {followingBox ? (<>
               <div className='bg-gray-900 w-full md:w-[40%] '>
 
-                <table className='  w-[96%] mx-auto  bg-gray-800 rounded-[8px]  text-gray-300'>
+                <table className='  w-[90%] mx-auto  bg-gray-800 rounded-[8px]  text-gray-300'>
                   <thead >
                     <tr className='   w-[300px] bg-gray-950 text-white  '>
                       <th className='p-2 '>following</th>
@@ -214,11 +214,7 @@ function App() {
       <div className='w-full bg-gray-900 pb-5 '>
 
         <br />
-        <h1 className='text-white text-4xl mb-2 text-center'
-        >All Repository
-          <br className='md:hidden' />
 
-        </h1>
 
         <div>
           <table className='border-collapse border border-gray-800  w-[95%] mx-auto   bg-gray-800 rounded-[8px]  text-gray-300'>
