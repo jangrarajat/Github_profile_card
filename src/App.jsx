@@ -3,6 +3,7 @@ import { FaGithub } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 
 import './App.css'
+import { div } from 'framer-motion/client';
 
 
 function App() {
@@ -43,15 +44,16 @@ function App() {
       const data = await res.json();
       setFollowerData(
         data.map((follow) => (
-          <td className='text-start p-2 border border-gray-800 ' key={follow.id}>
+          <td className='text-start p-2 ' key={follow.id}>
             <div className='flex gap-2 items-center'>
               <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
               <p className='text-sm'>{follow.login}</p>
             </div>
+            <div className='h-[1px] bg-gray-800 w-[96%] mt-2 '></div>
           </td>
         ))
       )
-    
+
     } catch (error) {
       console.log("follower geting data error", error)
       throw error
@@ -64,15 +66,16 @@ function App() {
       const data = await res.json();
       setFollowingData(
         data.map((follow) => (
-          <td className='text-start p-2 border border-gray-800 ' key={follow.id}>
+          <td className='text-start p-2  ' key={follow.id}>
             <div className='flex gap-2 items-center'>
               <img className='h-8 w-8 rounded-full' src={follow.avatar_url} alt="logo" />
               <p className='text-sm'>{follow.login}</p>
             </div>
+             <div className='h-[1px] bg-gray-800 w-[96%] mt-2 '></div>
           </td>
         ))
       )
-     
+
     } catch (error) {
       console.log("follower geting data error", error)
       throw error
@@ -127,11 +130,12 @@ function App() {
   return (
     <>
       {/* profile card section  */}
-      {laoding ? (<div className='fixed w-full h-full  top-0 left-0 bg-gray-800 ' >
-        <div className='h-20 w-20 border-7 border-b-white border-gray-500 animate-spin rounded-full m-auto mt-[300px]'></div>
-      </div>) : (<div className='fixed w-full h-full hidden top-0 left-0 bg-gray-800 ' >
-        <div className='h-20 w-20 border-7  border-b-white border-gray-500 animate-spin rounded-full m-auto mt-[300px]'></div>
-      </div>)}
+      {laoding ? (<>
+        <div className='w-full h-full fixed bg-transparent flex items-center justify-center '>
+          <div className='h-28 w-28 bo rounded-full  border-[10px] border-b-gray-400 animate-spin   '></div>
+
+        </div>
+      </>) : (<></>)}
 
 
       <div className='bg-gray-900 p-3 px-5 pb-6  md:flex md:items-center'>
@@ -143,7 +147,7 @@ function App() {
           <p className='text-start pl-3 flex items-center'><a href="https://github.com/jangrarajat" className='underline text-blue-400 flex items-center'> <FaGithub />  jangrarajat</a></p>
           <p className='text-start mb-3  '>
             <span className='ml-3  md:text-2xl '>{followers} </span> <span className='text-gray-400 text-sm cursor-pointer' onClick={() => setFollowerBox(followBox ? false : true)}>Followers</span>
-            <span className='ml-3  md:text-2xl '>{following}</span> <span className='text-gray-400 text-sm  cursor-pointer' onClick={() => setFollowingBox(followingBox? false : true)}>Following</span>
+            <span className='ml-3  md:text-2xl '>{following}</span> <span className='text-gray-400 text-sm  cursor-pointer' onClick={() => setFollowingBox(followingBox ? false : true)}>Following</span>
             <span className='ml-3  md:text-2xl '>{repoLenth}</span> <span className='text-gray-400 text-sm ' >Repository</span>
           </p>
           <p className='text-start pl-3 '>{bio}</p>
@@ -159,46 +163,53 @@ function App() {
 
       {/* followerBox Section  */}
 
+      {followBox || followingBox ? (
+        <>
+          <div className='bg-gray-900 flex flex-col justify-center md:flex-row'>
+            {followBox ? (<>
+              <div className='bg-gray-900 w-full md:w-[40%] '>
+                <table className='mb-4 w-[96%] mx-auto rounded-[8px]  text-gray-300'>
+                  <thead>
+                    <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
+                      <th className='p-2 border border-gray-800'>followers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className='px-3  bg-gray-900 flex flex-col'>
+                      {followerData}
+                    </tr>
+                  </tbody>
+                </table>
 
 
-      {followBox ? (<>
-        <div className='bg-gray-900  '>
-          <table className='border-collapse border border-gray-800  w-[95%] mx-auto   bg-gray-800 rounded-[8px]  text-gray-300'>
-            <thead >
-              <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
-                <th className='p-2 border border-gray-800'>followers</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className='border-b-2 px-3 border-gray-800 bg-gray-900 flex flex-col'>
-                {followerData}
-              </tr>
-            </tbody>
-          </table>
+              </div>
+            </>) : (<></>)}
 
-     
-        </div>
-      </>) : (<></>)}
+            {followingBox ? (<>
+              <div className='bg-gray-900 w-full md:w-[40%] '>
 
-       {followingBox  ? (<>
-        <div className='bg-gray-900  '>
-       
-          <table className='border-collapse border border-gray-800  w-[95%] mx-auto   bg-gray-800 rounded-[8px]  text-gray-300'>
-            <thead >
-              <tr className='   w-[300px] bg-gray-950 text-white border-b-gray-800 '>
-                <th className='p-2 border border-gray-800'>following</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className='border-b-2 px-3 border-gray-800 bg-gray-900 flex flex-col '>
-                {followingData}
+                <table className='  w-[96%] mx-auto  bg-gray-800 rounded-[8px]  text-gray-300'>
+                  <thead >
+                    <tr className='   w-[300px] bg-gray-950 text-white  '>
+                      <th className='p-2 '>following</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className='b px-3  bg-gray-900 flex flex-col '>
+                      {followingData}
 
-              </tr>
+                    </tr>
 
-            </tbody>
-          </table>
-        </div>
-      </>) : (<></>)}
+                  </tbody>
+                </table>
+              </div>
+            </>) : (<></>)}
+          </div>
+        </>) : (<></>)}
+
+
+
+
 
       {/* Repository table section  */}
 
